@@ -10,7 +10,7 @@ Wrapper for using libwebview from GNU Guile
 
 ### Build
 ```sh
-g++ webview.cc -fPIC -shared -DWEBVIEW_GTK -std=c++11 $FLAGS $(pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0) -o libwebview.so
+g++ webview.cc -fPIC -shared -DWEBVIEW_GTK -std=c++11 $(pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0) -o libwebview.so
 ```
 
 ### Install
