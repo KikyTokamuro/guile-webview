@@ -8,18 +8,18 @@ Wrapper for using libwebview from GNU Guile
 - [bytestructures](https://github.com/TaylanUB/scheme-bytestructures)
 - [ffi-help-rt](https://git.savannah.nongnu.org/cgit/nyacc.git/tree/module/system/ffi-help-rt.scm)
 
-### Build webview
+### Build
 ```sh
 g++ webview.cc -fPIC -shared -DWEBVIEW_GTK -std=c++11 $FLAGS $(pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0) -o libwebview.so
 ```
+
+### Install
+Copy `libwebview.so` to your shared libraries path, and `webview.scm` to you guile `(%site-dir)` path
 
 ### Run example
 ```sh
 LTDL_LIBRARY_PATH=. guile3.0 ./examples/clock.scm
 ```
-
-### Install
-Copy `libwebview.so` to your shared libraries path, and `webview.scm` to you guile `(%site-dir)` path
 
 ### Example
 Example of use with [GuileScript](https://github.com/aconchillo/guilescript) and [htmlprag](https://www.nongnu.org/guile-lib/doc/ref/htmlprag/)
