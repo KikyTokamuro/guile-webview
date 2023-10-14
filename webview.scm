@@ -23,27 +23,11 @@
 ;; SOFTWARE.
 
 (define-module (webview)
-  #:version (0 0 2)
+  #:version (0 2 0)
   #:use-module (system ffi-help-rt)
   #:use-module ((system foreign) #:prefix ffi:)
   #:use-module (bytestructures guile)
-  #:export (webview-version-t
-	    webview-version-t?
-	    make-webview-version-t
-	    
-	    webview-version-t*
-	    webview-version-t*?
-	    make-webview-version-t*
-
-	    webview-version-info-t
-	    webview-version-info-t? 
-	    make-webview-version-info-t
-
-	    webview-version-info-t*
-	    webview-version-info-t*? 
-	    make-webview-version-info-t*
-	    
-	    webview-t
+  #:export (webview-t
 	    webview-t?
 	    make-webview-t
 
@@ -129,7 +113,11 @@
 
 ;; typedef void *webview_t;
 (define-public webview-t-desc (fh:pointer 'void))
-(define-fh-pointer-type webview-t webview-t-desc webview-t? make-webview-t)
+(define-fh-pointer-type
+  webview-t
+  webview-t-desc
+  webview-t?
+  make-webview-t)
 
 ;; extern webview_t webview_create(int debug, void *window);
 ;; ----
@@ -404,9 +392,11 @@
                    (list)
                    (force ffi-webview-llibs)))))
     (lambda ()
-      (let ()
-        ((fht-wrap webview-version-info-t*)
-         ((force ~webview-version)))))))
+      (let ((version-info ((fht-wrap webview-version-info-t*)
+			   ((force ~webview-version)))))
+        `((major ,(bytestructure-ref (fh-object-ref version-info 'version) 'major))
+	  (minor ,(bytestructure-ref (fh-object-ref version-info 'version) 'minor))
+	  (patch ,(bytestructure-ref (fh-object-ref version-info 'version) 'patch)))))))
 
 ;; Access to enum symbols and #define'd constants:
 (define ffi-webview-symbol-tab
