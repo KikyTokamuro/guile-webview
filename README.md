@@ -68,6 +68,10 @@ Example of use with [GuileScript](https://github.com/aconchillo/guilescript) and
 (webview-run wv)
 ```
 
+Other examples:
+- [Examples dir](./examples)
+- [guile-ram-mon](https://github.com/KikyTokamuro/guile-ram-mon)
+
 ### Tested on
 ```
 GNU Guile 3.0.7
