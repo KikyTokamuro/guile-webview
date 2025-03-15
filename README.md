@@ -1,20 +1,26 @@
 # guile-webview
 
-Wrapper for using libwebview from GNU Guile 
+Wrapper for using libwebview from GNU Guile
 
 ### Dependencies
-- gtk+-3.0 
+- gtk+-3.0
 - webkit2gtk-4.0
 - [bytestructures](https://github.com/TaylanUB/scheme-bytestructures)
-- [ffi-help-rt](https://git.savannah.nongnu.org/cgit/nyacc.git/tree/module/system/ffi-help-rt.scm)
+- ffi-help-rt from repo, or version 1.09.4 from [ffi-help-rt](https://git.savannah.nongnu.org/cgit/nyacc.git/tree/module/system/ffi-help-rt.scm?h=main&id=bb8bfa9b833d911c5e73ec8e96ba2384c556f9b1)
 
 ### Build
+Linux:
 ```sh
 g++ ./webview/webview.cc -fPIC -shared -DWEBVIEW_BUILD_SHARED -DWEBVIEW_GTK -std=c++11 $(pkg-config --cflags --libs gtk+-3.0 webkit2gtk-4.0) -o libwebview.so
 ```
 
+macOS:
+```
+g++ ./webview/webview.cc -std=c++11 -framework Webkit -fPIC -dynamiclib -DWEBVIEW_BUILD_SHARED -o libwebview.dylib
+```
+
 ### Install
-Copy `libwebview.so` to your shared libraries path, and `webview.scm` to you guile `(%site-dir)` path
+Copy `libwebview.so` or `libwebview.dylib` to your shared libraries path, and `webview.scm` to you guile `(%site-dir)` path
 
 ### Run example
 ```sh
@@ -75,4 +81,6 @@ Other examples:
 ### Tested on
 ```
 GNU Guile 3.0.7
+GNU Guile 3.0.10
+ffi-help-rt 1.09.4
 ```

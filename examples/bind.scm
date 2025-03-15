@@ -17,5 +17,5 @@
 (webview-set-html wv "")
 (webview-set-size wv 800 500 0)
 (webview-bind wv "sum" js-sum 0)
-(webview-init wv "sum(1, 2).then((r) => alert(r))")
+(webview-init wv "sum(1, 2).then((r) => document.body.innerHTML = `sum(1, 2) = ${r}`)")
 (webview-run wv)
